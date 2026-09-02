@@ -2,7 +2,7 @@
 
 A modern, high-end e-commerce website for an artisan coffee roastery built with **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Stripe Integration**.
 
-![Brewza Coffee Banner](/public/rooted_in_craft.jpg)
+
 
 ## ✨ Features
 
