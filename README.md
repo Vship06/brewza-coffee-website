@@ -2,7 +2,7 @@
 
 A modern, high-end e-commerce website for an artisan coffee roastery built with **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Stripe Integration**.
 
-![Brewza Coffee Banner](/public/rooted_in_craft.jpg)
+
 
 ## ✨ Features
 
@@ -43,15 +43,8 @@ cd brewza-coffee-website
 npm install
 ```
 
-### 4. Set Up Environment Variables
-Create a `.env.local` file in the root directory and add your Stripe API keys:
 
-```env
-STRIPE_SECRET_KEY=sk_test_...
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
-```
-
-### 5. Run Development Server
+### 4. Run Development Server
 ```bash
 npm run dev
 ```
