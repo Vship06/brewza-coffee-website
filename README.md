@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ☕ Brewza Coffee Roasters
 
-## Getting Started
+A modern, high-end e-commerce website for an artisan coffee roastery built with **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Stripe Integration**.
 
-First, run the development server:
+![Brewza Coffee Banner](/public/rooted_in_craft.jpg)
 
+## ✨ Features
+
+- **Interactive Canvas Hero**: Frame-by-frame sticky canvas scroll animation capturing the coffee brewing journey.
+- **Dynamic Shop & Catalog**: Full product listing with filtering, detailed coffee origins, flavor tags, and custom roast profiles.
+- **Quick-View Modal System**: Seamless single-page product preview modals with backdrop blur and smooth transitions.
+- **Cart & Toast Notification**: Non-intrusive bottom-right toast notifications on item addition with a sliding full-featured cart drawer.
+- **Stripe Checkout API**: Integrated Next.js API route connecting the shopping cart directly to a secure Stripe Checkout Session.
+- **Responsive Mobile Navigation**: Custom mobile navigation drawer with active section highlighting powered by `IntersectionObserver`.
+- **Subscription Builder**: Interactive modal for customizing coffee preferences and delivery intervals.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Payments**: [Stripe SDK](https://stripe.com/) (`stripe`, `@stripe/stripe-js`)
+- **Fonts**: Google Fonts (`EB Garamond`, `Manrope`)
+- **Icons**: Material Symbols / Material Icons Outlined
+
+---
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed (v18+ recommended).
+
+### 2. Clone the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Vship06/brewza-coffee-website.git
+cd brewza-coffee-website
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Install Dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Set Up Environment Variables
+Create a `.env.local` file in the root directory and add your Stripe API keys:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+STRIPE_SECRET_KEY=sk_test_...
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+```
 
-## Learn More
+### 5. Run Development Server
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📄 Build & Production
 
-## Deploy on Vercel
+To build the project for production:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build
+npm run start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🌐 Deployment
+
+This application is ready to deploy on **Vercel**:
+
+1. Push your repository to GitHub.
+2. Import the project in [Vercel](https://vercel.com).
+3. Add `STRIPE_SECRET_KEY` under the **Environment Variables** settings.
+4. Deploy!
+
+---
+
+## 📝 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
