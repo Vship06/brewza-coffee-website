@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
+
 @import "tailwindcss";
 
 @theme {
@@ -101,26 +101,7 @@
   --text-display-lg--font-weight: 500;
 }
 
-.material-symbols-outlined {
-  font-family: 'Material Icons Outlined', sans-serif;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-}
 
-.material-symbols-outlined.filled {
-  font-variation-settings: 'FILL' 1;
-}
 
 @keyframes marquee {
   0% { transform: translateX(0%); }

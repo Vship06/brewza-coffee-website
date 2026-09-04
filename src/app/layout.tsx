@@ -6,6 +6,7 @@ import { CartProvider } from "./context/CartContext";
 import Navbar from "./components/Navbar";
 import CartDrawer from "./components/CartDrawer";
 import ToastNotification from "./components/ToastNotification";
+import ScrollProgress from "./components/ScrollProgress";
 
 const ebGaramond = EB_Garamond({
   variable: "--font-eb-garamond",
@@ -33,6 +34,7 @@ export default function RootLayout({
       className={`${ebGaramond.variable} ${manrope.variable} scroll-smooth`}
     >
       <body className="bg-background text-on-background font-body-md antialiased flex flex-col min-h-screen relative">
+        <ScrollProgress />
         <CartProvider>
           <Navbar />
           {children}

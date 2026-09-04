@@ -70,7 +70,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
           </div>
           
           <p className="font-body-md text-on-surface-variant leading-relaxed mb-8">
-            {product.longDescription}
+            {product.shortDescription}
           </p>
           
           <div className="grid grid-cols-2 gap-4 mb-8">

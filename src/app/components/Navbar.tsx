@@ -2,8 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
+import { ShoppingBag, Menu, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -108,7 +112,8 @@ export default function Navbar() {
 
   const getPillLinkClass = (id: string) => {
     const isActive = activeSection === id;
-    if (isScrolled) {
+    const isLightBg = isScrolled || !isHomePage;
+    if (isLightBg) {
       return isActive ? 'bg-primary text-on-primary' : 'hover:bg-primary hover:text-on-primary text-on-surface-variant';
     } else {
       return isActive ? 'bg-white text-primary' : 'hover:bg-white hover:text-primary text-white/90';
@@ -116,16 +121,18 @@ export default function Navbar() {
   };
 
   const getPillContainerClass = () => {
+    const isLightBg = isScrolled || !isHomePage;
     return `items-center rounded-full p-1.5 transition-all duration-300 backdrop-blur-md border pointer-events-auto shadow-sm ${
-      isScrolled 
-        ? 'bg-surface/70 border-outline-variant/30 text-on-surface-variant' 
+      isLightBg 
+        ? 'bg-surface/85 border-outline-variant/30 text-on-surface-variant shadow-md' 
         : 'bg-white/10 border-white/20 text-white drop-shadow-sm'
     }`;
   };
 
   const getIconButtonClass = () => {
+    const isLightBg = isScrolled || !isHomePage;
     return `relative p-2 rounded-full transition-colors duration-300 flex items-center justify-center ${
-      isScrolled
+      isLightBg
         ? 'hover:bg-primary hover:text-on-primary text-on-surface-variant'
         : 'hover:bg-white hover:text-primary text-white/90'
     }`;
@@ -137,7 +144,7 @@ export default function Navbar() {
       className={getIconButtonClass()}
       aria-label="Open cart"
     >
-      <span className="material-icons-outlined text-xl">shopping_bag</span>
+      <ShoppingBag className="w-5 h-5" />
       {cartCount > 0 && (
         <span className="absolute top-0 right-0 w-5 h-5 bg-secondary text-white text-xs font-bold flex items-center justify-center rounded-full transform translate-x-1/4 -translate-y-1/4 shadow-sm border-2 border-transparent">
           {cartCount}
@@ -152,9 +159,7 @@ export default function Navbar() {
       className={getIconButtonClass()}
       aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
     >
-      <span className="material-icons-outlined text-xl">
-        {isMobileMenuOpen ? 'close' : 'menu'}
-      </span>
+      {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
     </button>
   );
 
@@ -167,7 +172,7 @@ export default function Navbar() {
         className={`md:hidden fixed inset-0 transition-all duration-300 pointer-events-auto ${
           isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
         } ${
-          isScrolled ? 'bg-surface/95 backdrop-blur-md' : 'bg-black/80 backdrop-blur-md'
+          isScrolled || !isHomePage ? 'bg-surface/95 backdrop-blur-md' : 'bg-black/80 backdrop-blur-md'
         }`}
         style={{ zIndex: 45 }}
       >
@@ -179,8 +184,8 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               className={`font-headline-md text-4xl tracking-tight transition-colors duration-300 ${
                 activeSection === link.id 
-                  ? (isScrolled ? 'text-primary' : 'text-white') 
-                  : (isScrolled ? 'text-on-surface-variant' : 'text-white/70')
+                  ? ((isScrolled || !isHomePage) ? 'text-primary' : 'text-white') 
+                  : ((isScrolled || !isHomePage) ? 'text-on-surface-variant' : 'text-white/70')
               }`}
             >
               {link.label}
@@ -192,13 +197,13 @@ export default function Navbar() {
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center relative z-50">
         {/* Logo / Brand Name */}
         <a 
-          href="#" 
+          href="/" 
           className={`pointer-events-auto font-headline-md text-2xl md:text-3xl tracking-tight transition-all duration-300 ${
             isScrolled && !isMobileMenuOpen 
               ? 'opacity-0 -translate-y-2 pointer-events-none' 
               : 'opacity-100 translate-y-0'
           } ${
-            isMobileMenuOpen ? 'text-primary' : 'text-white drop-shadow-md'
+            isMobileMenuOpen || !isHomePage ? 'text-primary' : 'text-white drop-shadow-md'
           }`}
         >
           Brewza.

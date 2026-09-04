@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useCart } from '../context/CartContext';
-
+import { X, ShoppingBag, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 
 export default function CartDrawer() {
@@ -67,7 +67,7 @@ export default function CartDrawer() {
             onClick={toggleCart}
             className="p-2 hover:bg-surface-container-low rounded-full transition-colors"
           >
-            <span className="material-icons-outlined text-on-surface-variant">close</span>
+            <X className="w-6 h-6 text-on-surface-variant" />
           </button>
         </div>
 
@@ -75,7 +75,7 @@ export default function CartDrawer() {
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {cartItems.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center text-on-surface-variant">
-              <span className="material-icons-outlined text-6xl mb-4 opacity-50">shopping_bag</span>
+              <ShoppingBag className="w-16 h-16 mb-4 opacity-50" />
               <p className="font-body-lg">Your cart is empty.</p>
               <button 
                 onClick={toggleCart}
@@ -100,7 +100,7 @@ export default function CartDrawer() {
                   <div className="flex justify-between">
                     <h3 className="font-headline-sm text-lg text-primary">{item.name}</h3>
                     <button onClick={() => removeFromCart(item.id)} className="text-on-surface-variant hover:text-error transition-colors">
-                      <span className="material-icons-outlined text-sm">close</span>
+                      <X className="w-4 h-4" />
                     </button>
                   </div>
                   <p className="font-body-md text-on-surface-variant mb-auto">${item.price.toFixed(2)}</p>
@@ -139,10 +139,10 @@ export default function CartDrawer() {
             <button 
               onClick={handleCheckout}
               disabled={isCheckingOut}
-              className="w-full py-4 bg-primary text-on-primary font-label-caps text-label-caps rounded-lg hover:bg-primary/90 transition-colors duration-300 shadow-md disabled:opacity-50 flex justify-center items-center"
+              className="w-full py-4 bg-primary text-on-primary font-label-caps text-label-caps rounded hover:bg-primary/90 transition-colors duration-300 shadow-md disabled:opacity-50 flex justify-center items-center"
             >
               {isCheckingOut ? (
-                <span className="material-icons-outlined animate-spin mr-2">refresh</span>
+                <Loader2 className="w-5 h-5 animate-spin mr-2" />
               ) : null}
               {isCheckingOut ? 'Processing...' : 'Proceed to Checkout'}
             </button>

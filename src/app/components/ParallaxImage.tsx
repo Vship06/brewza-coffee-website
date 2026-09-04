@@ -38,13 +38,13 @@ export default function ParallaxImage({ src, alt, className = "", imageClassName
 
   return (
     <div ref={containerRef} className={`overflow-hidden relative ${className}`}>
-      <img
-        ref={imageRef}
-        src={src}
-        alt={alt}
-        className={`w-full h-full object-cover will-change-transform ${imageClassName}`}
-        style={{ transform: 'scale(1.3)' }}
-      />
+      <div ref={imageRef} className="w-full h-full will-change-transform" style={{ transform: 'scale(1.3)' }}>
+        <img
+          src={src}
+          alt={alt}
+          className={`w-full h-full object-cover ${imageClassName}`}
+        />
+      </div>
     </div>
   );
 }
