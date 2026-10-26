@@ -1,17 +1,23 @@
 import { embed } from 'ai';
 import { google } from '@ai-sdk/google';
-import { faqIndex } from '../../lib/pinecone';
+import { getFaqIndex } from '../../lib/pinecone';
 
 export async function getRelevantFaqContext(query: string) {
     if (!query) return '';
 
     try {
+        const index = getFaqIndex();
+        if (!index) {
+            console.warn('PINECONE_API_KEY is not set. Skipping vector FAQ retrieval.');
+            return '';
+        }
+
         const { embedding } = await embed({
             model: google.textEmbeddingModel('gemini-embedding-001' as any),
             value: query,
         });
 
-        const queryResponse = await faqIndex.query({
+        const queryResponse = await index.query({
             vector: embedding as number[],
             topK: 3,
             includeMetadata: true,
