@@ -13,6 +13,11 @@ export default function ScrollHero() {
   const text2Ref = useRef<HTMLDivElement>(null);
   const text3Ref = useRef<HTMLDivElement>(null);
 
+  // Transition elements to cleanly bridge into the Our Story section
+  const transitionOverlayRef = useRef<HTMLDivElement>(null);
+  const fullFadeRef = useRef<HTMLDivElement>(null);
+  const storyIndicatorRef = useRef<HTMLDivElement>(null);
+
   // Preload images to prevent flickering
   const imagesRef = useRef<HTMLImageElement[]>([]);
 
@@ -124,7 +129,35 @@ export default function ScrollHero() {
 
       updateText(text1Ref, 0.0, 0.08, 0.33);
       updateText(text2Ref, 0.33, 0.08, 0.66);
-      updateText(text3Ref, 0.66, 0.08, 1.0);
+      updateText(text3Ref, 0.66, 0.08, 0.95);
+
+      // Seamless transition to the next section ("Our Story")
+      // 1. Feathered bottom gradient overlay from scrollProgress 0.68 -> 0.92
+      if (transitionOverlayRef.current) {
+        let overlayOpacity = 0;
+        if (scrollProgress >= 0.68) {
+          overlayOpacity = Math.min(1, (scrollProgress - 0.68) / 0.22);
+        }
+        transitionOverlayRef.current.style.opacity = overlayOpacity.toString();
+      }
+
+      // 2. Soft atmospheric dissolve into #f5f3ef (surface-container-low) from 0.88 -> 1.0
+      if (fullFadeRef.current) {
+        let fadeOpacity = 0;
+        if (scrollProgress >= 0.88) {
+          fadeOpacity = Math.min(1, (scrollProgress - 0.88) / 0.12);
+        }
+        fullFadeRef.current.style.opacity = fadeOpacity.toString();
+      }
+
+      // 3. Subtle indicator welcoming the user into Our Story
+      if (storyIndicatorRef.current) {
+        let indOpacity = 0;
+        if (scrollProgress >= 0.82) {
+          indOpacity = Math.min(1, (scrollProgress - 0.82) / 0.12);
+        }
+        storyIndicatorRef.current.style.opacity = indOpacity.toString();
+      }
     };
 
     const handleResize = () => {
@@ -146,7 +179,7 @@ export default function ScrollHero() {
   }, []);
 
   return (
-    <section id="hero-section" ref={containerRef} className="relative h-[300vh] w-full bg-surface-container-lowest">
+    <section id="hero-section" ref={containerRef} className="relative h-[300vh] w-full bg-surface-container-low">
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-70 mix-blend-screen" />
         
@@ -199,6 +232,39 @@ export default function ScrollHero() {
           <p className="font-body-lg text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-light">
             The absolute pinnacle of flavor in your cup.
           </p>
+        </div>
+
+        {/* Dynamic bottom gradient to feather into #f5f3ef (surface-container-low) */}
+        <div
+          ref={transitionOverlayRef}
+          className="absolute inset-x-0 bottom-0 pointer-events-none z-10 will-change-[opacity]"
+          style={{
+            height: "55vh",
+            opacity: 0,
+            background: "linear-gradient(to bottom, transparent 0%, rgba(245, 243, 239, 0.25) 30%, rgba(245, 243, 239, 0.75) 70%, #f5f3ef 100%)",
+          }}
+        />
+
+        {/* Atmospheric soft background dissolve into the story canvas */}
+        <div
+          ref={fullFadeRef}
+          className="absolute inset-0 pointer-events-none z-20 will-change-[opacity]"
+          style={{
+            opacity: 0,
+            backgroundColor: "#f5f3ef",
+          }}
+        />
+
+        {/* Clean transition cue bridging the sections */}
+        <div
+          ref={storyIndicatorRef}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 pointer-events-none will-change-[opacity]"
+          style={{ opacity: 0 }}
+        >
+          <span className="font-label-caps text-[11px] tracking-[0.25em] text-primary/75 uppercase font-medium">
+            Discover Our Story
+          </span>
+          <div className="w-px h-8 bg-gradient-to-b from-secondary to-transparent animate-pulse" />
         </div>
 
       </div>

@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import CartDrawer from "./components/CartDrawer";
 import ToastNotification from "./components/ToastNotification";
 import ScrollProgress from "./components/ScrollProgress";
+import Chatbot from "./components/Chatbot";
 
 const ebGaramond = EB_Garamond({
   variable: "--font-eb-garamond",
@@ -40,6 +41,7 @@ export default function RootLayout({
           {children}
           <CartDrawer />
           <ToastNotification />
+          <Chatbot />
           <RotatingLogo />
         </CartProvider>
       </body>

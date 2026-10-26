@@ -46,7 +46,7 @@ export default function Home() {
         <ScrollHero />
 
         {/* Our Story Section */}
-        <section className="pt-32 pb-24 px-margin-mobile md:px-margin-desktop bg-surface-container-low overflow-hidden" id="story">
+        <section className="relative z-10 -mt-px pt-32 pb-24 px-margin-mobile md:px-margin-desktop bg-surface-container-low overflow-hidden" id="story">
           <div className="max-w-container-max mx-auto relative">
             {/* Connecting Line */}
             <div className="hidden md:block absolute left-4 md:-left-8 top-32 bottom-32 w-px bg-outline-variant/40 z-0"></div>
